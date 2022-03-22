@@ -273,9 +273,11 @@ public partial class Enemy
                 OnPatrol();
                 break;
             case STATE.Chase:
+                isChase = true;
                 OnChase();
                 break;
             case STATE.Battle:
+                isBattle = true;
                 OnBattle();
                 break;
             case STATE.GoBack:

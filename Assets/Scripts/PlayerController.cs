@@ -117,12 +117,11 @@ public class PlayerController : Singleton<PlayerController>
             anim.SetInteger("combo", value);
         }
     }
-    void Awake()
-    {
-        stat = GetComponent<Stateable>();
-    }
+   
     private void Start()
     {
+        stat = GetComponent<Stateable>();
+
         controller = GetComponent<CharacterController>();
         
         hp = stat.Stat.hp;
