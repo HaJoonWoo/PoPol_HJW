@@ -9,19 +9,29 @@ public class DamageText : MonoBehaviour, IPool<DamageText>
 {
     static Camera mainCam;
 
-    const string KEY_NORMAL = "DamageText_Appear";
-    const string KEY_CRI = "DamageText_Appear_Cri";
+    const string KEY_NORMAL = "Nomal_Damage_Animation";
+    const string KEY_CRI = "Cri_Damage_Animation";
 
     [SerializeField] Text damageText;
 
     Animation anim;
 
     // position:생성 위치, amount:데미지 수치.
-    public void Appear(Vector3 position, int amount)
+    public void Appear(Vector3 position, int amount, DAMAGE_TYPE type)
     {
         // amount 수치를 string으로 출력.
         damageText.text = amount.ToString();
-               
+
+        switch (type)
+        {
+            case DAMAGE_TYPE.Normal:
+                anim.Play(KEY_NORMAL);
+                break;
+
+            case DAMAGE_TYPE.Critical:
+                anim.Play(KEY_CRI);
+                break;
+        }
 
         StartCoroutine(FixPosition(position));
     }

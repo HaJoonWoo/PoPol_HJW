@@ -32,11 +32,11 @@ public class Damageable : MonoBehaviour
 
         // 최종 데미지와 종류 계산.
         float finalDamage = adDamage * (isCritical ? 1.5f : 1.0f);
-        //int finalDamageInt = Mathf.RoundToInt(finalDamage);
-        //DAMAGE_TYPE damageType = isCritical ? DAMAGE_TYPE.Critical : DAMAGE_TYPE.Normal;
+        int finalDamageInt = Mathf.RoundToInt(finalDamage);
+        DAMAGE_TYPE damageType = isCritical ? DAMAGE_TYPE.Critical : DAMAGE_TYPE.Normal;
 
         // UI에 출력.
-        //DamageManager.Instance.AppearDamage(damagePivot.position, finalDamageInt, damageType);
+        UIManager.Instance.AppearDamage(damagePivot.position, finalDamageInt, damageType);
 
         // 나의 체력 감소.
         hp = Mathf.Clamp(hp - finalDamage, 0, MaxHp);

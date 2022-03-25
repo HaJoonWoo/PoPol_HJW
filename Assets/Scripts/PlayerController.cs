@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum DAMAGE_TYPE
+{
+    Normal,
+    Critical,
+}
 
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(Stateable))]

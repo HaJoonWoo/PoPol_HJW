@@ -9,17 +9,21 @@ public class Attackable : MonoBehaviour
     [Header("Attackable")]
     [SerializeField] Transform attackPivot;
     [SerializeField] float attackRadius;
+    [SerializeField] LayerMask exceptMask;  //공격 제외 대상.
 
+
+    LayerMask attackMask = int.MaxValue; //1111 1111
 
     Stateable stat;
 
     void Start()
     {
         stat = GetComponent<Stateable>();
+        attackMask = attackMask ^ exceptMask;
     }
     public void Attack()
     {
-        Collider[] hits = Physics.OverlapSphere(attackPivot.position, attackRadius);
+        Collider[] hits = Physics.OverlapSphere(attackPivot.position, attackRadius, attackMask);
 
         foreach (Collider hit in hits)
         {

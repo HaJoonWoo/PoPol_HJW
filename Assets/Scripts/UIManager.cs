@@ -33,12 +33,12 @@ public class UIManager : ObjectPool<UIManager, DamageText>
         experienceSprite.fillAmount = playStat.levelExperience / 100f;
 
         levelText.text = string.Format("{0}%",(experienceSprite.fillAmount * 100f).ToString());
-        hpText.text = playStat.hp.ToString();
+        hpText.text = playHp.hp.ToString();
        
     }
-    public void AppearDamage(Vector3 position, int amount)
+    public void AppearDamage(Vector3 position, int amount, DAMAGE_TYPE type = DAMAGE_TYPE.Normal)
     {
         DamageText pool = GetPool();            // 풀링한 오브젝트 하나를 가져온다.
-        pool.Appear(position, amount);    // 데미지 텍스트를 출력한다.
+        pool.Appear(position, amount, type);    // 데미지 텍스트를 출력한다.
     }
 }
