@@ -390,11 +390,15 @@ public partial class Enemy
             Invoke(nameof(ResetAttack), 1.0f);
         }
 
+        if (playerMask == LayerMask.NameToLayer("Player_Dead"))
+        {
+            state = STATE.Patrol;
+        }
         //내가 공격중이 아니고 플레이어가 공격 범위를 벗어났다면
         else if (!IsInAttackRange())
         {
             state = STATE.Chase;
-        }      
+        }
         
     }
     void OnGoBack()

@@ -104,10 +104,30 @@ public class PlayerController : Singleton<PlayerController>
             anim.SetBool("isSword", value);
         }
     }
-
+    bool isUnderAttack
+    {
+        get
+        {
+            return anim.GetBool("isUnderAttack");
+        }
+        set
+        {
+            anim.SetBool("isUnderAttack", value);
+        }
+    }
     float gravity => GRAVITY * gravityScale;
 
-    bool isDead;            // 죽었는가
+    bool isDead
+    {
+        get
+        {
+            return anim.GetBool("isDead");
+        }
+        set
+        {
+            anim.SetBool("isDead", value);
+        }
+    }           // 죽었는가
     bool isAttack;          // 공격 중인가
     
 
@@ -139,8 +159,9 @@ public class PlayerController : Singleton<PlayerController>
     private void Update()
     {
         isGround = controller.isGrounded;
+
         
-        if (!isDead)
+        if (!isDead || !isUnderAttack)
         {
             Movement();             // 이동.
             Jump();                 // 점프.
@@ -169,7 +190,7 @@ public class PlayerController : Singleton<PlayerController>
     public void OnDead()
     {
         isDead = true;
-
+        gameObject.layer = LayerMask.NameToLayer("Player_Dead");
         anim.SetTrigger("onDead");
     }
     void Attack()
@@ -207,9 +228,18 @@ public class PlayerController : Singleton<PlayerController>
     }
     public void OnDamaged()
     {
+        anim.SetTrigger("onHit");
+        isUnderAttack = true;
 
+        CancelInvoke(nameof(ResetUnderAttack));     // 이전에 걸어둔 Invoke 취소.
+        Invoke(nameof(ResetUnderAttack), 1.5f);     // 1.5초 후에 함수 호출.
     }
 
+    
+    void ResetUnderAttack()
+    {
+        isUnderAttack = false;
+    }
     public void OnSword()   //검 착용 함수 검을 습득할때 실행, 검을 버릴때 실행
     {
         if (isSword)
