@@ -30,12 +30,12 @@ public class ItemObject : MonoBehaviour, IInteraction, IPool<ItemObject>
 
     public string GetName()
     {
-        return string.Format("{0}({1})", item.ItemName, item.Count);
+        return string.Format("{0}({1})", item.ItemName, item.GetType());
     }
 
     public void OnInteraction()
     {
-        //PlayerController.Instance.AddItem(item);        // 가지고 있는 아이템 데이터 전달.
+        PlayerController.Instance.AddItem(item);        // 가지고 있는 아이템 데이터 전달.
 
         if (OnReturnPool != null)
             OnReturnPool(this);                         // 오브젝트를 풀로 되돌림.

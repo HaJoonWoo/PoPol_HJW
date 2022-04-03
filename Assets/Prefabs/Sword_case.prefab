@@ -11,13 +11,14 @@ GameObject:
   - component: {fileID: 5957255653197246508}
   - component: {fileID: 808911805630109810}
   - component: {fileID: 3232777807522376888}
+  - component: {fileID: 207590399837332756}
   m_Layer: 0
   m_Name: Sword_case
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5957255653197246508
 Transform:
   m_ObjectHideFlags: 0
@@ -81,3 +82,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &207590399837332756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8658870983861867425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 160e3b07edb91dc4ea9bf408228dc31a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

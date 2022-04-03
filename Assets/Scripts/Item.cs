@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Item
+public class Item : IInteraction
 {
     [SerializeField] private ItemData data;
     [SerializeField] private int count;
@@ -27,7 +27,10 @@ public class Item
         data = copy.data;
         count = copy.count;
     }
-
+    public string GetName()
+    {
+        return this.ItemName;
+    }
     public bool Equals(Item target)
     {
         return data.itemKey == target.data.itemKey;
@@ -47,5 +50,10 @@ public class Item
         tip = string.Concat(tip, $"아이템 수량 : {count}");
 
         return tip;
+    }
+
+    public void OnInteraction()
+    {
+        
     }
 }
